@@ -6,10 +6,25 @@
   <title>Admission Tracker</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN  eveloped by <a href="https://facebook.com/mustafa24hours">Mustafa Rahman</a>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500">
+  <!-- Header with enhanced gradient and icon -->
+  <header class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white py-6 shadow-lg">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Graduation cap icon (inline SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2L1 7l11 5 9-4.09v6.18L12 22 3 13.18V7L12 2z"/>
+        </svg>
+        <h1 class="text-3xl font-extrabold tracking-wide">
+          Admission Tracker
         </h1>
       </div>
-     
+      <button id="darkModeToggle" class="px-4 py-2 bg-gray-700 bg-opacity-75 rounded-md hover:bg-opacity-100 transition duration-300 focus:outline-none focus:ring">
+        Toggle Dark Mode
+      </button>
     </div>
   </header>
 
