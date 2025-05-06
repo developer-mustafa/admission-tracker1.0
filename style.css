@@ -1,0 +1,116 @@
+
+/* Base styles */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --border-color: #e5e7eb;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+}
+
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #f3f4f6;
+  --text-secondary: #e5e7eb;
+  --border-color: #4b5563;
+  --primary-color: #3b82f6;
+  --primary-hover: #60a5fa;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Components */
+.stats-card {
+  @apply p-4 rounded-lg shadow flex-1 min-w-[200px];
+  background-color: var(--bg-secondary);
+}
+
+.dark .stats-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#loading-row {
+  animation: pulse 2s infinite;
+}
+
+.chart-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+/* Inputs */
+input, select, textarea {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Tables */
+.table-row:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark .table-row:hover {
+  background-color: rgba(31, 41, 55, 0.5) !important;
+}
+
+/* Status badges */
+.dark .bg-blue-100 { background-color: rgba(59, 130, 246, 0.2) !important; }
+.dark .bg-green-100 { background-color: rgba(16, 185, 129, 0.2) !important; }
+.dark .bg-purple-100 { background-color: rgba(139, 92, 246, 0.2) !important; }
+.dark .bg-yellow-100 { background-color: rgba(245, 158, 11, 0.2) !important; }
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}

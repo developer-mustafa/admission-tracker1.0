@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admission Tracker</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN  eveloped by <a href="https://facebook.com/mustafa24hours">Mustafa Rahman</a>
+        </h1>
+      </div>
+     
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 space-y-6">
+    <!-- Search & Filters Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Search &amp; Filters</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <input id="searchName" type="text" placeholder="Name" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input id="searchPhone" type="text" placeholder="Phone" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input id="searchGroup" type="text" placeholder="Group" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <select id="searchStatus" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="">All Statuses</option>
+          <option value="Called">Called</option>
+          <option value="Follow-Up Needed">Follow-Up Needed</option>
+          <option value="Agreed">Agreed</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Paid">Paid</option>
+        </select>
+        <input id="searchDate" type="date" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      </div>
+    </section>
+
+    <!-- Student Management Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Student Management</h2>
+      <form id="studentForm" class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+        <input type="text" id="name" placeholder="Name" class="p-3 border rounded-md col-span-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="text" id="phone" placeholder="Phone" class="p-3 border rounded-md col-span-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="text" id="group" placeholder="Group (Science, Commerce, Arts)" class="p-3 border rounded-md col-span-1 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="date" id="date" class="p-3 border rounded-md col-span-1 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <select id="status" class="p-3 border rounded-md col-span-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="Called">Called</option>
+          <option value="Follow-Up Needed">Follow-Up Needed</option>
+          <option value="Agreed">Agreed</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Paid">Paid</option>
+        </select>
+        <div class="col-span-2">
+          <button type="submit" class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition duration-300 focus:outline-none focus:ring">
+            Add Student
+          </button>
+        </div>
+      </form>
+
+      <!-- Student List Grid Layout -->
+      <div id="studentList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Student cards will be injected here -->
+      </div>
+    </section>
+
+    <!-- Backup, Export, Restore & Import Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Backup, Export &amp; Import</h2>
+      <div class="flex flex-wrap gap-4">
+        <button id="exportCSV" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition duration-300 focus:outline-none focus:ring">
+          Export CSV
+        </button>
+        <button id="backupJSON" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-500 transition duration-300 focus:outline-none focus:ring">
+          Backup JSON
+        </button>
+        <label for="restoreJSON" class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-500 transition duration-300 cursor-pointer focus:outline-none focus:ring">
+          Restore JSON
+        </label>
+        <input type="file" id="restoreJSON" accept="application/json" class="hidden" />
+
+        <label for="importCSV" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition duration-300 cursor-pointer focus:outline-none focus:ring">
+          Import CSV
+        </label>
+        <input type="file" id="importCSV" accept=".csv, text/csv" class="hidden" />
+      </div>
+    </section>
+
+    <!-- Analytics Dashboard Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Analytics Dashboard</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="relative h-64">
+          <canvas id="statusChart"></canvas>
+        </div>
+        <div class="relative h-64">
+          <canvas id="groupChart"></canvas>
+        </div>
+      </div>
+      <div class="mt-6 relative h-64">
+        <canvas id="deptChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Editing Student Details -->
+  <div id="studentModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white dark:bg-gray-700 rounded-xl p-6 w-11/12 md:w-1/2 shadow-lg">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <form id="editStudentForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" id="editName" placeholder="Name" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="text" id="editPhone" placeholder="Phone" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="text" id="editGroup" placeholder="Group (Science, Commerce, Arts)" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <input type="date" id="editDate" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <select id="editStatus" class="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="Called">Called</option>
+          <option value="Follow-Up Needed">Follow-Up Needed</option>
+          <option value="Agreed">Agreed</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Paid">Paid</option>
+        </select>
+        <div class="md:col-span-2 flex justify-end gap-4">
+          <button type="button" id="cancelEdit" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-500 transition duration-300 focus:outline-none focus:ring">
+            Cancel
+          </button>
+          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition duration-300 focus:outline-none focus:ring">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
